@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let model = Users()
+    var viewModel = UserViewModel()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
     }
     
     func setupTableView() {
@@ -37,15 +38,15 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.info.count
+        return viewModel.userCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.identifier, for: indexPath) as? UserCell else {
             return UserCell()
         }
-        cell.nameLabel.text = model.info[indexPath.row].name
-        cell.ageLabel.text = "\(model.info[indexPath.row].age)"
+        cell.nameLabel.text = viewModel.userName(index: indexPath.row)
+        cell.ageLabel.text = viewModel.userAge(index: indexPath.row)
         
         return cell
     }
