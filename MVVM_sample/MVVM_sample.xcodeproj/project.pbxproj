@@ -16,6 +16,8 @@
 		544BA8A629C2D96C00232A7A /* MVVM_sampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544BA8A529C2D96C00232A7A /* MVVM_sampleTests.swift */; };
 		544BA8B029C2D96C00232A7A /* MVVM_sampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544BA8AF29C2D96C00232A7A /* MVVM_sampleUITests.swift */; };
 		544BA8B229C2D96C00232A7A /* MVVM_sampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544BA8B129C2D96C00232A7A /* MVVM_sampleUITestsLaunchTests.swift */; };
+		544BA8C029C2DD4D00232A7A /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544BA8BF29C2DD4D00232A7A /* UserCell.swift */; };
+		544BA8C229C2E1C100232A7A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544BA8C129C2E1C100232A7A /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		544BA8AB29C2D96C00232A7A /* MVVM_sampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVM_sampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		544BA8AF29C2D96C00232A7A /* MVVM_sampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVM_sampleUITests.swift; sourceTree = "<group>"; };
 		544BA8B129C2D96C00232A7A /* MVVM_sampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVM_sampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		544BA8BF29C2DD4D00232A7A /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		544BA8C129C2E1C100232A7A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		544BA88D29C2D96C00232A7A /* MVVM_sample */ = {
 			isa = PBXGroup;
 			children = (
+				544BA8BE29C2DD3800232A7A /* New Group */,
 				544BA88E29C2D96C00232A7A /* AppDelegate.swift */,
 				544BA89029C2D96C00232A7A /* SceneDelegate.swift */,
 				544BA89229C2D96C00232A7A /* ViewController.swift */,
@@ -106,6 +111,8 @@
 				544BA89729C2D96C00232A7A /* Assets.xcassets */,
 				544BA89929C2D96C00232A7A /* LaunchScreen.storyboard */,
 				544BA89C29C2D96C00232A7A /* Info.plist */,
+				544BA8BF29C2DD4D00232A7A /* UserCell.swift */,
+				544BA8C129C2E1C100232A7A /* Model.swift */,
 			);
 			path = MVVM_sample;
 			sourceTree = "<group>";
@@ -125,6 +132,13 @@
 				544BA8B129C2D96C00232A7A /* MVVM_sampleUITestsLaunchTests.swift */,
 			);
 			path = MVVM_sampleUITests;
+			sourceTree = "<group>";
+		};
+		544BA8BE29C2DD3800232A7A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +272,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				544BA8C229C2E1C100232A7A /* Model.swift in Sources */,
+				544BA8C029C2DD4D00232A7A /* UserCell.swift in Sources */,
 				544BA89329C2D96C00232A7A /* ViewController.swift in Sources */,
 				544BA88F29C2D96C00232A7A /* AppDelegate.swift in Sources */,
 				544BA89129C2D96C00232A7A /* SceneDelegate.swift in Sources */,
