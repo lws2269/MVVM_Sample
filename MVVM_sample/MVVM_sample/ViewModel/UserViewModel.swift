@@ -7,8 +7,8 @@
 
 import Foundation
 
-class UserViewModel {
-    private var users = [
+class UserViewModel: ObservableObject {
+    @Published private var users = [
         User(name: "kim", age: 22),
         User(name: "lee", age: 11),
         User(name: "lim", age: 44)
