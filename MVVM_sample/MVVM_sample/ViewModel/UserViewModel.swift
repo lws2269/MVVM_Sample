@@ -30,21 +30,35 @@ class UserViewModel: ObservableObject {
         return users[index].name
     }
     
-    func bindUserName(index: Int, completion: @escaping (String) -> Void) {
-        $users.sink { users in
-            print("name sink")
-            completion(users[index].name)
-        }.store(in: &canceleables)
-    }
-    
     func userAge(index: Int) -> String {
         return users[index].age.description
     }
     
+    /// cell의 index를 받아 변경을 주는 로직
+    func bindUserName(index: Int, completion: @escaping (String) -> Void) {
+        $users.filter { $0.count > index }.sink { users in
+            completion(users[index].name)
+        }.store(in: &canceleables)
+    }
+    
     func bindUserAge(index: Int, completion: @escaping (String) -> Void) {
-        $users.sink { users in
+        $users.filter { $0.count > index }.sink { users in
             completion(users[index].age.description)
         }.store(in: &canceleables)
+    }
+    
+    /// cell의 정보를 받아 처리하는 func
+    func bindUserName(index: Int, store: inout Set<AnyCancellable>, completion: @escaping (String) -> Void) {
+        $users.filter { $0.count > index }.sink { users in
+            print("name sink")
+            completion(users[index].name)
+        }.store(in: &store)
+    }
+    
+    func bindUserAge(index: Int, store: inout Set<AnyCancellable>, completion: @escaping (String) -> Void) {
+        $users.filter { $0.count > index }.sink { users in
+            completion(users[index].age.description)
+        }.store(in: &store)
     }
     
     func createUser(name: String, age: Int) {
@@ -61,7 +75,6 @@ class UserViewModel: ObservableObject {
     
     func deleteUser(id: UUID) {
         if let selectedIndex = users.firstIndex(where: { id == $0.id }) {
-            canceleables.removeAll()
             users.remove(at: selectedIndex)
         }
     }

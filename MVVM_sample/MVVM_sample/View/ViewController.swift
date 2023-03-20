@@ -171,12 +171,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return UserCell()
         }
         // 바인딩
-        viewModel.bindUserName(index: indexPath.row) { name in
+        viewModel.bindUserName(index: indexPath.row, store: &cell.cancellabels) { name in
             cell.nameLabel.text = name
         }
-        viewModel.bindUserAge(index: indexPath.row) { ageString in
+        viewModel.bindUserAge(index: indexPath.row, store: &cell.cancellabels) { ageString in
             cell.ageLabel.text = ageString
         }
+    
+//        viewModel.bindUserName(index: indexPath.row) { name in
+//            cell.nameLabel.text = name
+//        }
+//        viewModel.bindUserAge(index: indexPath.row) { ageString in
+//            cell.ageLabel.text = ageString
+//        }
         
         return cell
     }

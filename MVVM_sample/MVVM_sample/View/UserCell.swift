@@ -11,7 +11,7 @@ import Combine
 class UserCell: UITableViewCell {
     static let identifier = "UserCell"
     
-    var cancellabels: Set<AnyCancellable>?
+    var cancellabels: Set<AnyCancellable> = []
     
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -50,6 +50,10 @@ class UserCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
     }
 
 }
