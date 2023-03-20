@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     
     var selectedUUID = UUID()
     
+    var cancellables = Set<AnyCancellable>()
+    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "name"
@@ -135,6 +137,7 @@ class ViewController: UIViewController {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
         ])
     }
+    
     @objc func createUser() {
         let name = nameTextField.text ?? ""
         let age = Int(ageTextField.text ?? "") ?? 0
@@ -149,8 +152,6 @@ class ViewController: UIViewController {
         let age = Int(ageTextField.text ?? "") ?? 0
 
         viewModel.updateUser(id: selectedUUID, name: name, age: age)
-        
-        tableView.reloadData()
     }
     
     @objc func deleteUser() {
@@ -169,8 +170,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UserCell.identifier, for: indexPath) as? UserCell else {
             return UserCell()
         }
-        cell.nameLabel.text = viewModel.userName(index: indexPath.row)
-        cell.ageLabel.text = viewModel.userAge(index: indexPath.row)
+        // 바인딩
+        viewModel.bindUserName(index: indexPath.row) { name in
+            cell.nameLabel.text = name
+        }
+        viewModel.bindUserAge(index: indexPath.row) { ageString in
+            cell.ageLabel.text = ageString
+        }
         
         return cell
     }

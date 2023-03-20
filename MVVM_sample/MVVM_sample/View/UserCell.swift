@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Combine
 
 class UserCell: UITableViewCell {
     static let identifier = "UserCell"
+    
+    var cancellabels: Set<AnyCancellable>?
     
     let nameLabel: UILabel = {
         let label = UILabel()

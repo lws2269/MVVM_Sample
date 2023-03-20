@@ -6,17 +6,22 @@
 //
 
 import Foundation
+import Combine
 
 class UserViewModel: ObservableObject {
-    @Published private var users = [
+    @Published var users = [
         User(name: "kim", age: 22),
         User(name: "lee", age: 11),
         User(name: "lim", age: 44)
     ]
     
+    var canceleables = Set<AnyCancellable>()
+    
+    
     var userCount: Int {
         users.count
     }
+    
     func user(index: Int) -> User {
         return users[index]
     }
@@ -25,8 +30,21 @@ class UserViewModel: ObservableObject {
         return users[index].name
     }
     
+    func bindUserName(index: Int, completion: @escaping (String) -> Void) {
+        $users.sink { users in
+            print("name sink")
+            completion(users[index].name)
+        }.store(in: &canceleables)
+    }
+    
     func userAge(index: Int) -> String {
         return users[index].age.description
+    }
+    
+    func bindUserAge(index: Int, completion: @escaping (String) -> Void) {
+        $users.sink { users in
+            completion(users[index].age.description)
+        }.store(in: &canceleables)
     }
     
     func createUser(name: String, age: Int) {
@@ -43,6 +61,7 @@ class UserViewModel: ObservableObject {
     
     func deleteUser(id: UUID) {
         if let selectedIndex = users.firstIndex(where: { id == $0.id }) {
+            canceleables.removeAll()
             users.remove(at: selectedIndex)
         }
     }
